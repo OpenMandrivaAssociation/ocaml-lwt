@@ -8,6 +8,7 @@ URL:            http://ocsigen.org/lwt/
 Source0:        http://ocsigen.org/download/lwt-%{version}.tar.gz
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}
 BuildRequires:  ocaml-findlib
+BuildRequires:  camlp4
 BuildRequires:  ocaml-ssl >= 0.4.0
 BuildRequires:  ocaml-react
 BuildRequires:  ocaml-lablgtk2
