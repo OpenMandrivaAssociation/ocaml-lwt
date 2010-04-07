@@ -1,5 +1,5 @@
 Name:           ocaml-lwt
-Version:        1.1.0
+Version:        2.0.0
 Release:        %mkrel 1
 Summary:        Cooperative light-weight thread library for OCaml
 Group:          Development/Other
@@ -9,6 +9,10 @@ Source0:        http://ocsigen.org/download/lwt-%{version}.tar.gz
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}
 BuildRequires:  ocaml-findlib
 BuildRequires:  ocaml-ssl >= 0.4.0
+BuildRequires:  ocaml-react
+BuildRequires:  ocaml-lablgtk2
+Requires:  ocaml-react
+Requires:  ocaml-lablgtk2
 
 %description
 Lwt is a lightweight thread library for Objective Caml.
@@ -35,6 +39,7 @@ iconv -f iso-8859-1 -t utf-8 < README.old > README
 
 %build
 make
+make doc
 
 %install
 rm -rf %{buildroot}
@@ -61,4 +66,6 @@ rm -rf %{buildroot}
 %{_libdir}/ocaml/lwt/*.cmxa
 %{_libdir}/ocaml/lwt/*.cmx
 %{_libdir}/ocaml/lwt/*.mli
+%{_libdir}/ocaml/lwt/*.cmo
+%{_libdir}/ocaml/stublibs/*.so*
 
