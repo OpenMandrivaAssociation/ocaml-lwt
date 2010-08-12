@@ -1,5 +1,5 @@
 Name:           ocaml-lwt
-Version:        2.1.0
+Version:        2.1.1
 Release:        %mkrel 1
 Summary:        Cooperative light-weight thread library for OCaml
 Group:          Development/Other
