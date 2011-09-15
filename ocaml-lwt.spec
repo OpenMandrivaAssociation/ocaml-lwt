@@ -1,6 +1,6 @@
 Name:           ocaml-lwt
-Version:        2.1.1
-Release:        %mkrel 1
+Version:        2.3.1
+Release:        1
 Summary:        Cooperative light-weight thread library for OCaml
 Group:          Development/Other
 License:        LGPLv2+ with exceptions
@@ -12,6 +12,8 @@ BuildRequires:  camlp4
 BuildRequires:  ocaml-ssl >= 0.4.0
 BuildRequires:  ocaml-react
 BuildRequires:  ocaml-lablgtk2
+BuildRequires:	ocaml-text
+BuildRequires:	libev-devel
 Requires:  ocaml-react
 Requires:  ocaml-lablgtk2
 
@@ -32,6 +34,14 @@ Requires:       %{name} = %{version}-%{release}
 The %{name}-devel package contains libraries and signature files for
 developing applications that use %{name}.
 
+%package doc
+Summary:        Documentation for %{name}
+Group:          Development/Other
+Requires:       %{name} = %{version}-%{release}
+
+%description doc
+The %{name}-doc package contains documentation for %{name}.
+
 %prep
 %setup -q -n lwt-%{version}
 
@@ -39,34 +49,31 @@ mv README README.old
 iconv -f iso-8859-1 -t utf-8 < README.old > README
 
 %build
+ocaml setup.ml -configure --prefix %{_prefix} --destdir '%{buildroot}' --docdir %{_docdir}/%{name}-doc/
 make
 make doc
 
 %install
-rm -rf %{buildroot}
-export DESTDIR=%{buildroot}
 export OCAMLFIND_DESTDIR=%{buildroot}%{_libdir}/ocaml
 mkdir -p $OCAMLFIND_DESTDIR $OCAMLFIND_DESTDIR/stublibs
 make install
 
-%clean
-rm -rf %{buildroot}
-
 %files
-%defattr(-,root,root)
 %doc LICENSE COPYING
 %dir %{_libdir}/ocaml/lwt
 %{_libdir}/ocaml/lwt/META
 %{_libdir}/ocaml/lwt/*.cma
 %{_libdir}/ocaml/lwt/*.cmi
+%{_libdir}/ocaml/lwt/*.cmxs
 
 %files devel
-%defattr(-,root,root)
-%doc LICENSE COPYING CHANGES CHANGES.darcs README VERSION _build/lwt.docdir
 %{_libdir}/ocaml/lwt/*.a
+%{_libdir}/ocaml/lwt/*.h
+%{_libdir}/ocaml/lwt/*.ml
 %{_libdir}/ocaml/lwt/*.cmxa
-%{_libdir}/ocaml/lwt/*.cmx
 %{_libdir}/ocaml/lwt/*.mli
-%{_libdir}/ocaml/lwt/*.cmo
 %{_libdir}/ocaml/stublibs/*.so*
 
+%files doc
+%doc LICENSE COPYING CHANGES README
+%{_docdir}/
