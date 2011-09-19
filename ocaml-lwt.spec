@@ -13,6 +13,7 @@ BuildRequires:  ocaml-ssl >= 0.4.0
 BuildRequires:  ocaml-react
 BuildRequires:  ocaml-lablgtk2
 BuildRequires:	ocaml-text
+BuildRequires:	ncurses-devel
 BuildRequires:	libev-devel
 Requires:  ocaml-react
 Requires:  ocaml-lablgtk2
