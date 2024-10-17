@@ -4,7 +4,7 @@ Release:        2
 Summary:        Cooperative light-weight thread library for OCaml
 Group:          Development/Other
 License:        LGPLv2+ with exceptions
-URL:            http://ocsigen.org/lwt/
+URL:            https://ocsigen.org/lwt/
 Source0:        http://ocsigen.org/download/lwt-%{version}.tar.gz
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}
 BuildRequires:  ocaml-findlib
